@@ -301,6 +301,175 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/22/Three-Interesting-Proofs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Siil">
+      <meta itemprop="description" content="博主是一个SB">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Siil's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/09/22/Three-Interesting-Proofs/" class="post-title-link" itemprop="url">Three Interesting Proofs</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-09-22 19:34:18 / 修改时间：20:34:12" itemprop="dateCreated datePublished" datetime="2019-09-22T19:34:18+08:00">2019-09-22</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="最近遇到的三个比较有意思的算法题证明："><a href="#最近遇到的三个比较有意思的算法题证明：" class="headerlink" title="最近遇到的三个比较有意思的算法题证明："></a>最近遇到的三个比较有意思的算法题证明：</h1><p>以下证明都是非严谨数学证明，只是在思维上较为严谨的证明。</p>
+<h3 id="First-Proof"><a href="#First-Proof" class="headerlink" title="First Proof:"></a>First Proof:</h3><p>还是简单说一下证明部分的题意：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在一个数轴上有 [0-8] 这九个点</span><br><span class="line">相邻两点的距离都是1</span><br><span class="line">要用两种颜色对这九个点进行染色</span><br><span class="line">试证明：一定存在颜色相同的三个点A、B、C，以B为中心，A到B的距离与C到B的距离一样</span><br></pre></td></tr></table></figure>
+
+<p>暴力的证明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">染色方案总共只有pow(2, 9) = 512种，于是可以枚举所有的染色方案。</span><br></pre></td></tr></table></figure>
+
+<p>巧妙的证明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">假设我们的颜色分别为红色跟蓝色。</span><br><span class="line">首先，如果整个数轴都是同一个颜色，那么结论是显然的。</span><br><span class="line">那么只要证明数轴并不都是同一个颜色的情况。</span><br><span class="line">由于有9个点，那么我们一定可以找到两个颜色相同的点，假设为A，C，他们的中点是B。</span><br><span class="line">如果B与A、C的颜色相同，那么结论就证明了。现在假设B与A、C颜色不同。方便起见假设A、C为红色，B为蓝色。</span><br><span class="line">我们可以在A的左边，C的右边分别找到两个点D、E，且 AD = AC，CE = AC。</span><br><span class="line">可以发现，如果D跟E至少有一个与A、C的颜色相同，那么A、C、D、E就可以选三个点得到结论。</span><br><span class="line">而如果D、E都与A、C颜色不一样，那么B、D、E也证明了结论。所以结论得证。</span><br></pre></td></tr></table></figure>
+
+<h3 id="Second-Proof"><a href="#Second-Proof" class="headerlink" title="Second Proof:"></a>Second Proof:</h3><p>简单说明题意：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">有个长度为n的数组a，可以对任何位置的ai进行+1操作，对i位置的ai加1操作的费用是bi。</span><br><span class="line">问使得任意位置的ai都与相邻位置的ai不同的最小花费</span><br><span class="line">数据范围 n &lt;= 2e5, 1 &lt;= bi &lt;= 1e9, 1 &lt;= ai &lt;= 1e9</span><br></pre></td></tr></table></figure>
+
+<p>一开始想着去贪心了，搞了一个小时，最后也没搞出来。</p>
+<p>真算法+证明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">真算法很简单，每个位置只有三种可能情况 +0, +1, +2, 所以对这三种可能情况进行dp就可以了</span><br><span class="line">为什么这是对的呢？</span><br><span class="line">反证：</span><br><span class="line">假设存在+3的时候最优，最优值为x，那么 x - 1, x - 2, x - 3，这三种情况中总至少存在一种与相邻位置数字不同的情况。</span><br><span class="line">因为相邻位置最多只有两个数字。</span><br><span class="line">复杂度O(n)</span><br></pre></td></tr></table></figure>
+
+<h3 id="Third-Problem："><a href="#Third-Problem：" class="headerlink" title="Third Problem："></a>Third Problem：</h3><p>题意：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定长度为n的一个数组a，数组里至少有两种数字</span><br><span class="line">对于数组中的一些数字，每次加上x(x &gt; 0)，x未知，可以加多次</span><br><span class="line">问最少加多少次，且x为多少，可以使得最后数组里的所有数字相等</span><br><span class="line">数据范围 n &lt;= 2e5, 1 &lt;= ai &lt;= 1e9</span><br></pre></td></tr></table></figure>
+
+<p>刚开始的时候直接猜测大概x就是所有数字的GCD，这个结论有点偏差</p>
+<p>正解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">在刚刚猜测的基础上稍微做点改变，不是所有数字的GCD，而应该是每个数字-最小的数字之后的数组的GCD。</span><br><span class="line">为什么这样次数会最少呢？</span><br><span class="line">首先，结果肯定是大家都等于最大的数，因为给最大的数+x是没有意义的</span><br><span class="line">给最大的数+x之后，小的数就都得额外加一次x才能抵消这次操作。所以只给小的数+x就可以。</span><br><span class="line">知道最后都等于最大的数后，又知道每个数需要增加的大小之后，怎么选x可以保证最后加的次数是最少的呢？</span><br><span class="line">这个x就是刚刚所说的GCD。</span><br><span class="line">复杂度O(n * log(max(a)))</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/10/Two-interesting-problems/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1175,7 +1344,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
