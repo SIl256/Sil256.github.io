@@ -301,6 +301,193 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/leetcode-memo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Siil">
+      <meta itemprop="description" content="博主是一个SB">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Siil's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/08/leetcode-memo/" class="post-title-link" itemprop="url">leetcode memo</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-08 20:11:19 / 修改时间：22:14:41" itemprop="dateCreated datePublished" datetime="2019-12-08T20:11:19+08:00">2019-12-08</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="739-Daily-Temperatures"><a href="#739-Daily-Temperatures" class="headerlink" title="739.Daily Temperatures"></a>739.Daily Temperatures</h3><p>Concise: For each element, find the first element which is greater than it.</p>
+<p>Solution1:</p>
+<p>Monotonic stack </p>
+<p>Time Complexity: O(n)<br>Space Complexity: O(n)</p>
+<p>Solution2:</p>
+<p>Jump jump jump</p>
+<p>Time Complexity: O(n)<br>Space Complexity: O(n)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; dailyTemperatures(vector&lt;int&gt;&amp; T) &#123;</span><br><span class="line">        vector&lt;pair&lt;int, int&gt; &gt; stack; // pair(value, position)</span><br><span class="line">        vector&lt;int&gt; result(T.size(), 0);</span><br><span class="line">        for(int i = T.size() - 1; i &gt; -1; i--) &#123;</span><br><span class="line">            for(result[i] = i + 1; result[i] &lt; T.size() &amp;&amp; T[i] &gt;= T[result[i]]; result[i] = result[result[i]]);</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i = 0; i &lt; T.size(); i++) &#123;</span><br><span class="line">            if(result[i] == T.size())</span><br><span class="line">                result[i] = 0;</span><br><span class="line">            else</span><br><span class="line">                result[i] = result[i] - i;</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="621-Task-Scheduler"><a href="#621-Task-Scheduler" class="headerlink" title="621. Task Scheduler"></a>621. Task Scheduler</h3><p>Concise: Schedule tasks, same task could be ran after a cooling interval.</p>
+<p>Solution:<br>Find the period of a group of task.<br>eg.<br>|Axxxx|Axxxx|Axxxx|Axxxxxx</p>
+<p>Time Compelexity: O(n)<br>Space Compelexity: O(C) C is charcter set.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int leastInterval(vector&lt;char&gt;&amp; tasks, int n) &#123;</span><br><span class="line">        vector&lt;int&gt; cnt(26);</span><br><span class="line">        for(char &amp; c : tasks) &#123;</span><br><span class="line">            cnt[c - &apos;A&apos;]++;</span><br><span class="line">        &#125;</span><br><span class="line">        int maxCnt = 0;</span><br><span class="line">        for(auto &amp; num : cnt) &#123;</span><br><span class="line">            maxCnt = max(maxCnt, num);</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = (maxCnt - 1) * (n + 1);</span><br><span class="line">        for(auto &amp; num : cnt) &#123;</span><br><span class="line">            if(num == maxCnt)</span><br><span class="line">                ans++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans = max(ans, int(tasks.size()));</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="581-Shortest-Unsorted-Continuous-Subarray"><a href="#581-Shortest-Unsorted-Continuous-Subarray" class="headerlink" title="581. Shortest Unsorted Continuous Subarray"></a>581. Shortest Unsorted Continuous Subarray</h3><p>Concise: Find a subarray after it sorted will make entire array be ordered.</p>
+<p>Solution1:</p>
+<p>copy orignal array, sort it, and compare each position.</p>
+<p>Time Complexity: O(nlogn)<br>Space Complexity: O(n)</p>
+<p>Solution2:</p>
+<p>Contract from two side, then find the max and min number in the middle, then enlarge two bound untile left bound less than min, and right bound greater than max.</p>
+<p>Time Complexity: O(n)<br>Space Complexity: O(1)</p>
+<p>One pass</p>
+<p>Cautions: conor case</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int findUnsortedSubarray(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        int left = 0, right = nums.size() - 1;</span><br><span class="line">        while(left + 1 &lt; nums.size() &amp;&amp; nums[left + 1] &gt;= nums[left])</span><br><span class="line">            left++;</span><br><span class="line">        while(right &gt; left &amp;&amp; nums[right - 1] &lt;= nums[right])</span><br><span class="line">            right--;</span><br><span class="line">        int mx = nums[left], mn = nums[right];</span><br><span class="line">        for(int i = left; i &lt; right; i++) &#123;</span><br><span class="line">            mx = max(mx, nums[i]);</span><br><span class="line">            mn = min(mn, nums[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        while(left &gt; -1 &amp;&amp; nums[left] &gt; mn) left--;</span><br><span class="line">        while(right &lt; nums.size() &amp;&amp; nums[right] &lt; mx) right++;</span><br><span class="line">        return max(0, right - left - 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="448-Find-All-Numbers-Disappeared-in-an-Array"><a href="#448-Find-All-Numbers-Disappeared-in-an-Array" class="headerlink" title="448. Find All Numbers Disappeared in an Array"></a>448. Find All Numbers Disappeared in an Array</h3><p>Solution1:<br>use another visiter array.</p>
+<p>Time Complexity: O(n)<br>Space Complexity: O(n)</p>
+<p>Solution2:<br>use original array index and minus and positive number.</p>
+<p>Time Complexity: O(n)<br>Space Complexity: O(1)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    vector&lt;int&gt; findDisappearedNumbers(vector&lt;int&gt;&amp; nums) &#123;</span><br><span class="line">        for(int c: nums)&#123;</span><br><span class="line">            if(nums[abs(c)-1]&lt;0)continue;</span><br><span class="line">            nums[abs(c)-1]*=-1;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;int&gt; res;</span><br><span class="line">        for(int i=0; i&lt;nums.size(); i++)</span><br><span class="line">            if(nums[i]&gt;0)res.push_back(i+1);</span><br><span class="line">        return res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="394-Decode-String"><a href="#394-Decode-String" class="headerlink" title="394. Decode String"></a>394. Decode String</h3><p>Leared: isdigit(char)<br>Concise:<br>eg.<br>s = “3[a]2[bc]”, return “aaabcbc”.<br>s = “3[a2[c]]”, return “accaccacc”.<br>s = “2[abc]3[cd]ef”, return “abcabccdcdcdef”.</p>
+<p>Solution1:<br>iterate</p>
+<p>Time Complexity: O(n^2)<br>Space Complexity: O(n)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int get(string &amp; s, int pos) &#123;</span><br><span class="line">        while(pos - 1 &gt; -1 &amp;&amp; s[pos - 1] &lt;= &apos;9&apos; &amp;&amp; s[pos - 1] &gt;= &apos;0&apos;)</span><br><span class="line">            pos--;</span><br><span class="line">        int ret = 0;</span><br><span class="line">        while(pos &lt; s.size() &amp;&amp; s[pos] &lt;= &apos;9&apos; &amp;&amp; s[pos] &gt;= &apos;0&apos;) &#123;</span><br><span class="line">            ret = ret * 10 + s[pos] - &apos;0&apos;;</span><br><span class="line">            pos++;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">    string decodeString(string s) &#123;</span><br><span class="line">        s = &quot;1[&quot; + s + &quot;]&quot;;</span><br><span class="line">        vector&lt;int&gt; s1;</span><br><span class="line">        vector&lt;string&gt; s2;</span><br><span class="line">        for(int i = 0; i &lt; s.size(); i++) &#123;</span><br><span class="line">            if(s[i] == &apos;[&apos;) &#123;</span><br><span class="line">                int k = get(s, i - 1);</span><br><span class="line">                s1.push_back(k);</span><br><span class="line">                s2.push_back(&quot;&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(s[i] == &apos;]&apos;) &#123;</span><br><span class="line">                string catStr = s2.back();</span><br><span class="line">                string str;</span><br><span class="line">                int k = s1.back();</span><br><span class="line">                s1.pop_back();</span><br><span class="line">                s2.pop_back();</span><br><span class="line">                if(s2.size()) &#123;</span><br><span class="line">                    str = s2.back();</span><br><span class="line">                    s2.pop_back();</span><br><span class="line">                &#125;</span><br><span class="line">                for(int j = 0; j &lt; k; j++)</span><br><span class="line">                    str += catStr;</span><br><span class="line">                s2.push_back(str);</span><br><span class="line">            &#125;</span><br><span class="line">            else if(s[i] &lt; &apos;0&apos; || s[i] &gt;&apos;9&apos;) &#123;</span><br><span class="line">                s2.back() += s[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return s2.back();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>Solution2:<br>recursive.</p>
+<p>Time Complexity: O(n^2)<br>Space Complexity: O(n)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    string decodeString(string &amp; s, int &amp; pos) &#123;</span><br><span class="line">        string ret = &quot;&quot;;</span><br><span class="line">        while(pos &lt; s.size() &amp;&amp; s[pos] != &apos;]&apos;) &#123;</span><br><span class="line">            if(!isdigit(s[pos]))</span><br><span class="line">                ret += s[pos++];</span><br><span class="line">            else &#123;</span><br><span class="line">                int k = 0;</span><br><span class="line">                while(pos &lt; s.size() &amp;&amp; isdigit(s[pos])) &#123;</span><br><span class="line">                    k = k * 10 + s[pos] - &apos;0&apos;;</span><br><span class="line">                    pos++;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                pos++;</span><br><span class="line">                string str = decodeString(s, pos);</span><br><span class="line">                pos++;</span><br><span class="line">                for(int i = 0; i &lt; k; i++)</span><br><span class="line">                    ret += str;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ret;</span><br><span class="line">    &#125;</span><br><span class="line">    string decodeString(string s) &#123;</span><br><span class="line">        int pos = 0;</span><br><span class="line">        return decodeString(s, pos);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="347-Top-K-Frequent-Elements"><a href="#347-Top-K-Frequent-Elements" class="headerlink" title="347. Top K Frequent Elements"></a>347. Top K Frequent Elements</h3><p>Learned: nth_element(first, first + k, end);<br>Concise:<br>Solution1:<br>nth_element(first, first + k, end);<br>Time Complexity: O(n)<br>Space Complexity: O(n)</p>
+<p>Solution2:<br>bucket sort<br>Time Complexity: O(n)<br>Space Complexity: O(n)</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/01/Recent-States/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1877,7 +2064,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
