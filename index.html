@@ -361,7 +361,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-29 22:22:19" itemprop="dateModified" datetime="2020-03-29T22:22:19+08:00">2020-03-29</time>
+                <time title="修改时间：2020-04-08 23:06:41" itemprop="dateModified" datetime="2020-04-08T23:06:41+08:00">2020-04-08</time>
               </span>
             
           
@@ -436,6 +436,14 @@
 <td align="center">.</td>
 <td align="center"></td>
 </tr>
+<tr>
+<td align="center">100</td>
+<td align="center">O</td>
+<td align="center">X</td>
+<td align="center">.</td>
+<td align="center">.</td>
+<td align="center"></td>
+</tr>
 </tbody></table>
 <p><code>. 尚未通过 O 当场通过 X 赛后通过 ! 放弃</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">103</span><br><span class="line">C: 水题</span><br><span class="line">D: 构造</span><br><span class="line">  用&#123;2**x: 0 &lt;= x &lt;= 30&#125;可以构造出(M, 0),(-M, 0),(0, M),(0, -M),M = 2**(30 + 1) - 1，围起来的四边形内任意一个满足(abs(x + y) % 2 = 1)的点</span><br><span class="line">  abs(x + y) % 2 = 0的点同理，再额外加个1到集合中即可</span><br><span class="line">E: 构造，毛毛虫树</span><br></pre></td></tr></table></figure>
@@ -443,6 +451,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">102</span><br><span class="line">C: 水题</span><br><span class="line">D: 构造</span><br><span class="line">  点下标0..m，点i向i+1连两条边权值分别0和2**i，现在可以构造出[0, 2**m)的所有路径</span><br><span class="line">  离最终想要的路径数之差为n - 2**m，然后用二进制拆位的思想，从0..m-1中的一些点向m连边，下标为i的点连的边能够多出2**i条不同的路径</span><br><span class="line">E: 组合数学</span><br><span class="line">  对于一种情况来说</span><br><span class="line">  假设t为奇数，可以将n个数字分成两类</span><br><span class="line">  一类是a + b = t(a和b都在1..k的范围内)的数字</span><br><span class="line">  除了上述(a, b)以外的数字称为第二类数字</span><br><span class="line">  第一类数字中的数字在答案中只会出现(a, b)二者之一，而对于第二类数字是没有限制的</span><br><span class="line">  假设第一类pair(a, b)数量有p种，在答案中出现了q种，这样的方案数是 C(p, q) * 2**q</span><br><span class="line">  问题可以转换成将n个球，分到两类盒子里</span><br><span class="line">  第一类盒子里的盒子(有q个盒子)必须分到至少一个球</span><br><span class="line">  第二类盒子里的盒子(有k - 2 * p)可以分到任意个球，令m = k - 2 * p</span><br><span class="line">  隔板法计算，方案数就是：C(n + m - 1, q + m - 1)</span><br><span class="line">  最后的答案就是：C(p, q) * 2**q * C(n + m - 1, q + m - 1)</span><br><span class="line">  t为偶数的情况</span><br><span class="line">  第一类数字会出现a + a = t这样的数，这样的数只会出现1或0个，分类讨论转换成t为奇数的情况</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">101</span><br><span class="line">C: 水题</span><br><span class="line">D: 二分</span><br><span class="line">  假设最终序列的长度为m，中位数是x，则≥x的数有ceil(m / 2)个，并且x是满足上述条件最大的数</span><br><span class="line">  基于上述结论，可以通过对最终序列的中位数x进行二分，将原问题转化为判断多少个(l, r)满足m(l, r) &gt;= x</span><br><span class="line">  新转化的问题就可以通过将原数组中的元素≥x的设为1，≤x设为-1，S表示新数组前缀和，求新数组中(l, r)满足S[r]-S[l]≥0的数量</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">100</span><br><span class="line">C: 水题，中位数的性质</span><br><span class="line">D: 最终答案一定是均分四部分，观察发现有单调性，枚举i, j, k中的j，对i，k进行双指针右移。然后写炸了</span><br></pre></td></tr></table></figure>
 
 
           
