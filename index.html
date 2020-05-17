@@ -321,7 +321,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/03/28/Atcoder-Training/" class="post-title-link" itemprop="url">Atcoder Training</a>
+                <a href="/2020/03/28/Atcoder-Training/" class="post-title-link" itemprop="url">Atcoder Training(ARC096 - ARC103)</a>
               
             
           </h1>
@@ -361,7 +361,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-10 17:42:11" itemprop="dateModified" datetime="2020-05-10T17:42:11+08:00">2020-05-10</time>
+                <time title="修改时间：2020-05-17 20:30:28" itemprop="dateModified" datetime="2020-05-17T20:30:28+08:00">2020-05-17</time>
               </span>
             
           
@@ -478,6 +478,15 @@
 <td style="text-align:center">X</td>
 <td style="text-align:center">.</td>
 </tr>
+<tr>
+<td style="text-align:center">2020-05-12 21:50:00</td>
+<td style="text-align:center"></td>
+<td style="text-align:center">096</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">.</td>
+<td style="text-align:center">.</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -511,13 +520,19 @@
 <p>100<br>C: 水题，中位数的性质<br>D:<br><strong>题意</strong><br>给定长度为 $4 \le N \le 2 \times 10^5$ 的序列A，其中每个元素 $ 1 \le A_i \le 10^9$，将这个序列分成连续的 $B,C,D,E$ 四部分，每部分的和分别为 $P,Q,R,S$ 求 $max(P, Q,R,S) - min(P,Q,R,S)$ 的最小值</p>
 <p><strong>分析</strong><br>最终答案一定是均分四部分，观察发现有单调性，枚举 $i,j, k$ 中的 $j$，对 $i, k$ 进行双指针右移。然后写炸了</p>
 <hr>
-<p>99<br>C: 水题<br>D: Todo<br>E:<br><strong>题意</strong><br>给定一个$2 \le N \le 700$个点，$0 \le M \le N(N-1)/2$条边的简单图（无自环无重边），问是否能够将图分成两部分，每部分都是个完全图</p>
+<p>099<br>C: 水题<br>D: Todo<br>E:<br><strong>题意</strong><br>给定一个$2 \le N \le 700$个点，$0 \le M \le N(N-1)/2$条边的简单图（无自环无重边），问是否能够将图分成两部分，每部分都是个完全图</p>
 <p><strong>分析</strong><br>  满足题目最终条件的图的补图一定是个二分图（感觉遇到完全图转换成补图是个套路）<br>  假设不是二分图，那补图中就会存在一个长度为奇数的环<br>  随便选一个点作为起点，按顺序$1,2,1,2\cdots$染色，这个环中会有一个点无法分配到原图的集合 $1$ 或者 $2$ 中<br>  对于补图的二分图每块去分配做个dp就行</p>
 <hr>
-<p>98<br>C: 水题<br>D: 水题<br>E: 水题</p>
+<p>098<br>C: 水题<br>D: 水题<br>E: 水题</p>
 <hr>
-<p>97<br>C: 水题<br>D: 水题<br>E:<br><strong>题意</strong><br>给定 $2N,(1\le N \le 2000)$ 个球排成一排，其中 $N$ 个黑球，$N$ 个白球，每个球的下标从$1, \cdots, N$, 每次可以 交换两个相邻 的球，问使得对于任意一种颜色的球，都满足按照下标递增顺序时最少进行多少次操作。</p>
+<p>097<br>C: 水题<br>D: 水题<br>E:<br><strong>题意</strong><br>给定 $2N,(1\le N \le 2000)$ 个球排成一排，其中 $N$ 个黑球，$N$ 个白球，每个球的下标从$1, \cdots, N$, 每次可以 交换两个相邻 的球，问使得对于任意一种颜色的球，都满足按照下标递增顺序时最少进行多少次操作。</p>
 <p><strong>分析</strong><br>可以通过结果状态来思考，结果状态里相同颜色球间的相对顺序是固定的。可以通过dp构造结果状态<br>$F[B][W]$表示黑色球按相对顺序放了前 $B$ 个，白色球按相对顺序放了前 $W$ 个的最小操作数<br>$F[B][W] = min(F[B-1][W] + costB[B][W], F[B][W-1] + costW[B][W])$其中costB表示把下标为$B$这个球在前 $W$ 个球已经移到前面后移到前面$B+W$位置的花费</p>
+<hr>
+<p>096<br>C:水题<br>D:水题<br>E:<br><strong>题意</strong><br>有$(2\le N \le 3000)$种的配料，问满足如下条件的方案数：</p>
+<ul>
+<li>不存在两个相同的配料搭配集合</li>
+<li>每种配料至少出现在两个配料搭配集合里</li>
+</ul>
 
           
         
