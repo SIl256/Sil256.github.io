@@ -101,7 +101,7 @@
 <meta property="og:site_name" content="Siil&#39;s Blog">
 <meta property="og:description" content="Goal: Clear all ARC problems.     vp date upd date Contest C D E F     - 2020-03-14 13:36:49 103 O X O .   - 2020-03-29 19:23:10 102 O X X .   - 2020-03-28 22:15:50 101 O X . .   - 2020-04-08 22:51:10">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-05-17T12:30:28.734Z">
+<meta property="og:updated_time" content="2020-05-20T15:44:59.026Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Atcoder Training(ARC096 - ARC103)">
 <meta name="twitter:description" content="Goal: Clear all ARC problems.     vp date upd date Contest C D E F     - 2020-03-14 13:36:49 103 O X O .   - 2020-03-29 19:23:10 102 O X X .   - 2020-03-28 22:15:50 101 O X . .   - 2020-04-08 22:51:10">
@@ -359,7 +359,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-17 20:30:28" itemprop="dateModified" datetime="2020-05-17T20:30:28+08:00">2020-05-17</time>
+                <time title="修改时间：2020-05-20 23:44:59" itemprop="dateModified" datetime="2020-05-20T23:44:59+08:00">2020-05-20</time>
               </span>
             
           
@@ -483,6 +483,15 @@
 <td style="text-align:center">.</td>
 <td style="text-align:center">.</td>
 </tr>
+<tr>
+<td style="text-align:center">2020-05-19 21:30:00</td>
+<td style="text-align:center">2020-05-20 22:15:00</td>
+<td style="text-align:center">095</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">.</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -529,6 +538,8 @@
 <li>不存在两个相同的配料搭配集合</li>
 <li>每种配料至少出现在两个配料搭配集合里</li>
 </ul>
+<hr>
+<p>095<br>C:水题<br>D:<br><strong>题意</strong><br>给定 $2 \le N \le 2<em>10^5$ 个互不相同的数 $0 \le a_i \le 10^9$ ，求使组合数$C(n, r)$最大的 $a_i, a_j (i \ne j)$<br><strong>分析</strong><br>对于同一个 $r$ 而言，$n$ 具有单调性，对于同一个 $n$ 而言，越靠近中间的 $r$ 能使得组合数 $C(n, r)$ 更大<br>E:<br><strong>题意</strong><br>有高为 $1 \le H \le 12$，宽为 $1 \le W \le 12$ 的字符矩阵，问是否能构通过分别交换某些行，某些列，使得矩阵中心对称<br><em>*分析</em></em><br>判断交换后的结果矩阵需要枚举两列然后check，复杂度 $O(H^2\times W)$<br>观察可以发现，不需要枚举所有的情况，可以同时枚举$(1, H), (2, H-1), (3, H-2), \cdots$ , 分别是对应当前的哪一行，方案数是$C(12, 2) \times C(10, 2) \times C(8, 2) \times C(6, 2) \times C(4, 2) \times C(2, 2) = 7,484,400 $ 会被极端数据卡掉。<br>再观察发现，任意配对的两个pair行之间是独立的，也就是上述枚举中不存在顺序关系，所以只要枚举 $C(12, 2) \times C(10, 2) \times C(8, 2) \times C(6, 2) \times C(4, 2) \times C(2, 2) \div A(6,6) = 10395$ 种方案数</p>
 
       
     </div>
