@@ -301,6 +301,232 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/21/Atcoder-Training-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Siil">
+      <meta itemprop="description" content="博主是一个SB">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Siil's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/05/21/Atcoder-Training-1/" class="post-title-link" itemprop="url">Atcoder-Training(ARC095 - )</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-05-21 23:03:27" itemprop="dateCreated datePublished" datetime="2020-05-21T23:03:27+08:00">2020-05-21</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-05-31 23:32:10" itemprop="dateModified" datetime="2020-05-31T23:32:10+08:00">2020-05-31</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Goal: Clear all ARC problems.</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">vp date</th>
+<th style="text-align:center">upd date</th>
+<th style="text-align:center">Contest</th>
+<th style="text-align:center">C</th>
+<th style="text-align:center">D</th>
+<th style="text-align:center">E</th>
+<th style="text-align:center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2020-05-21 20:40:00</td>
+<td style="text-align:center">2020-05-21 23:00:00</td>
+<td style="text-align:center">094</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">.</td>
+</tr>
+<tr>
+<td style="text-align:center">2020-05-23 14:10:00</td>
+<td style="text-align:center">2020-05-24 15:48:00</td>
+<td style="text-align:center">093</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">.</td>
+</tr>
+<tr>
+<td style="text-align:center">2020-05-27 21:30:00</td>
+<td style="text-align:center">2020-05-31 22:50:38</td>
+<td style="text-align:center">092</td>
+<td style="text-align:center">O</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">X</td>
+<td style="text-align:center">.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code>. 尚未通过 O 当场通过 X 赛后通过 ! 放弃</code></p>
+<hr>
+<p>094<br>C: 水题<br>D:<br><strong>题意</strong><br>有 $1 \le Q \le 100$ 个询问，每次询问给定 $1 \le A_i, B_i \le 10^9$，最多有多少个<br><strong>分析</strong><br>E:<br><strong>题意</strong><br>给定长度为 $1 \le N \le 2 \div 10^5$ 的数组 $A, B$ ，$0 \le A_i, B_i \le 10^9$ 且$(sigma(A) = sigma(B))$，按如下顺序进行游戏：</p>
+<ul>
+<li>如果任意$A_i = B_i$，游戏结束</li>
+<li>Tozan 选择一个$0 \lt A_i$，进行 $-1$ 操作</li>
+<li>Gezan 选择一个$0 \lt B_i$，进行 $-1$操作<br>Tozan想让游戏进行轮数最多，Gezan想让游戏进行轮数最少，两人都是最优策略。求游戏能进行多少轮</li>
+</ul>
+<p><strong>分析</strong><br>假设有 $a$ 个 $A_i=B_i$，$b$ 个 $A_i &lt; B_i$，$c$ 个$A_i &gt; B_i$<br>有 $3$ 种情况:</p>
+<ol>
+<li>$a \ge 0$ AND $b = 0$ AND $c = 0$，$0$ 次</li>
+<li>$a \ge 0$ AND $b \gt 0$ AND $c=1$，$sigma(A) - A_{i: A_i &gt; B_i}$ 次</li>
+<li>$a \ge 0$ AND $b \gt 0$ AND $c \gt 1$，这个比较复杂，需要观察出，当对于某个 $i$，有 $A_i=B_i + 1$ 时，两方谁如果对这个 $i$ 进行操作都是亏的，最后只会有Tozan对这堆进行操作，其余的都会变成 $0$ ，那就先选其中一堆满足这种条件的出来，最后再进行这个操作。最后答案是 $sigma(A) - min(B_{i:A_i \gt B_i})$</li>
+</ol>
+<hr>
+<p>093<br>C: 水题<br>D:<br><strong>题意</strong><br>给定黑色连通块和白色连通块的数量分别为 $1 \le B, W \le 500$，让构造一个01矩阵，矩阵的长宽$L, W \le 100$，使得该矩阵刚好有$B$个黑色连通块（四联通），$W$个白色连通块（四联通）</p>
+<p><strong>分析</strong><br>由于 $100 \times 100 = 10000$ 远大于 $500 + 500$，所以先把100分成上下两部分分别染成黑白，再分别在黑色部分挑出 $W - 1$ 个不相邻的格子染成白色，在白色部分挑出 $B - 1$ 个不相邻的格子染成黑色<br>E:<br><strong>题意</strong><br>给定 $1 \le N \le 1000$ 个点，$1 \le M \le 2000$ 条边，边权 $1\le W \le 10^9$，和一个数 $1 \le X \le 10^{12}$</p>
+<p><strong>分析</strong></p>
+<hr>
+<p>092<br>C: 写了个最大匹配。实际上可以排序后贪心<br>D:<br><strong>题意</strong><br>给定长度为 $1 \le N \le 200000$ 的序列$A, B$，每个元素 $0 \le A_i, B_i \lt 2^{28}$，对于 $1 \le i, j \le N，A_i + B_j$ 构成的 $N^2$元素，求 $N^2$ 个元素的xor和<br><strong>分析</strong><br>感觉又是很general的idea。<br>（首先对 $ans$ 拆位，求 $ans$ 每一位上是 $0$ 或者是 $1$ ）<br>假设当前在求 $ans$ 的第 $k$ 位，先对 $A_i$ 和 $B_j$ 对 $2^{k+1}$ 取模，得到的数称为$a_i, b_j$ 只有当 $2^k\le a_i + b _j \lt 2 \times 2^k$ 或者 $3 \times 2^k \le a_i + b_j \lt 4 \times 2^k$ 时才对这一位有贡献<br>E:<br><strong>题意</strong><br>有长度为$2 \le N \le 1000$ 的序列 $A$，$0\le |A_i| \le 10^9$，可以进行如下操作，直到序列剩一个元素，求剩下这个元素的最大值：</p>
+<ul>
+<li>选当前序列第 $1$ 个元素，直接删除</li>
+<li>选当前序列最后一个元素，直接删除</li>
+<li>选当前中间的元素 $A_i$，然后用$A_{i-1}+A_{i+1}$代替该元素，并将$A_{i-1}, A_{i+1}$删除</li>
+</ul>
+<p><strong>分析</strong><br>感觉是又是general的idea<br>TODO</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/28/Atcoder-Training/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -321,7 +547,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/03/28/Atcoder-Training/" class="post-title-link" itemprop="url">Atcoder Training(ARC096 - ARC103)</a>
+                <a href="/2020/03/28/Atcoder-Training/" class="post-title-link" itemprop="url">Atcoder Training(ARC095 - ARC103) Uncompleted</a>
               
             
           </h1>
@@ -361,7 +587,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-05-20 23:44:59" itemprop="dateModified" datetime="2020-05-20T23:44:59+08:00">2020-05-20</time>
+                <time title="修改时间：2020-05-31 18:47:41" itemprop="dateModified" datetime="2020-05-31T18:47:41+08:00">2020-05-31</time>
               </span>
             
           
@@ -521,7 +747,7 @@
 <ul>
 <li>任意两个骰子加起来的和不等于 $i$</li>
 </ul>
-<p><strong>分析</strong><br>对于一种情况来说<br>  假设 $t$ 为奇数，可以将 $n$ 个数字分成两类<br>  一类是 $a + b = t(a和b都在1..k的范围内)$ 的数字<br>  除了上述 $(a, b)$ 以外的数字称为第二类数字<br>  第一类数字中的数字在答案中只会出现 $(a, b)$ 二者之一，而对于第二类数字是没有限制的<br>  假设第一类 $pair(a, b)$ 数量有 $p$ 种，在答案中出现了 $q$ 种，这样的方案数是 $C(p, q) \times 2^q$<br>  问题可以转换成将 $n$ 个球，分到两类盒子里<br>  第一类盒子里的盒子(有 $q$ 个盒子)必须分到至少一个球<br>  第二类盒子里的盒子(有$k - 2 \times p$)可以分到任意个球，令 $m = k - 2 \times p$<br>  隔板法计算，方案数就是：$C(n + m - 1, q + m - 1)$<br>  最后的答案就是：$C(p, q) \times 2^q \times C(n + m - 1, q + m - 1)$<br>  当 $t$ 为偶数的情况第一类数字会出现 $a + a = t$ 这样的数，这样的数只会出现1或0个，分类讨论转换成 $t​$ 为奇数的情况</p>
+<p><strong>分析</strong><br>对于一种情况来说<br>  假设 $t$ 为奇数，可以将 $n$ 个数字分成两类<br>  一类是 $a + b = t(a和b都在1..k的范围内)$ 的数字<br>  除了上述 $(a, b)$ 以外的数字称为第二类数字<br>  第一类数字中的数字在答案中只会出现 $(a, b)$ 二者之一，而对于第二类数字是没有限制的<br>  假设第一类 $pair(a, b)$ 数量有 $p$ 种，在答案中出现了 $q$ 种，这样的方案数是 $C(p, q) \times 2^q$<br>  问题可以转换成将 $n$ 个球，分到两类盒子里<br>  第一类盒子里的盒子(有 $q$ 个盒子)必须分到至少一个球<br>  第二类盒子里的盒子(有$k - 2 \times p$)可以分到任意个球，令 $m = k - 2 \times p$<br>  隔板法计算，方案数就是：$C(n + m - 1, q + m - 1)$<br>  最后的答案就是：$C(p, q) \times 2^q \times C(n + m - 1, q + m - 1)$<br>  当 $t$ 为偶数的情况第一类数字会出现 $a + a = t$ 这样的数，这样的数只会出现1或0个，分类讨论转换成 $t$ 为奇数的情况</p>
 <hr>
 <p>101<br>C: 水题<br>D:<br><strong>题意</strong><br>给定长度为 $1 \le N \le 10^5$ 的序列 $A$，对于所有的子段而言的中位数构成新序列 $B$，求B的中位数。<br>中位数为第 $(\lfloor Len/2 \rfloor + 1)$ 个数</p>
 <p><strong>分析</strong><br>  假设最终序列的长度为 $M$，中位数是 $x$，则 $\ge x$ 的数有$\lceil M \div 2 \rceil$个，并且 $x$ 是满足上述条件最大的数<br>  基于上述结论，可以通过对最终序列的中位数 $x$ 进行二分，将原问题转化为判断多少个 $(l, r)$ 满足 $mid(l, r) \ge x$<br>  新转化的问题就可以通过将原数组中的元素 $ \ge x$ 的设为$1$，$ \le x$设为 $-1$，$S$ 表示新数组前缀和，求新数组中$ (l, r) $满足$S_r-S_l \ge 0$的数量</p>
@@ -543,7 +769,7 @@
 <li>每种配料至少出现在两个配料搭配集合里</li>
 </ul>
 <hr>
-<p>095<br>C:水题<br>D:<br><strong>题意</strong><br>给定 $2 \le N \le 2<em>10^5$ 个互不相同的数 $0 \le a_i \le 10^9$ ，求使组合数$C(n, r)$最大的 $a_i, a_j (i \ne j)$<br><strong>分析</strong><br>对于同一个 $r$ 而言，$n$ 具有单调性，对于同一个 $n$ 而言，越靠近中间的 $r$ 能使得组合数 $C(n, r)$ 更大<br>E:<br><strong>题意</strong><br>有高为 $1 \le H \le 12$，宽为 $1 \le W \le 12$ 的字符矩阵，问是否能构通过分别交换某些行，某些列，使得矩阵中心对称<br><em>*分析</em></em><br>判断交换后的结果矩阵需要枚举两列然后check，复杂度 $O(H^2\times W)$<br>观察可以发现，不需要枚举所有的情况，可以同时枚举$(1, H), (2, H-1), (3, H-2), \cdots$ , 分别是对应当前的哪一行，方案数是$C(12, 2) \times C(10, 2) \times C(8, 2) \times C(6, 2) \times C(4, 2) \times C(2, 2) = 7,484,400 $ 会被极端数据卡掉。<br>再观察发现，任意配对的两个pair行之间是独立的，也就是上述枚举中不存在顺序关系，所以只要枚举 $C(12, 2) \times C(10, 2) \times C(8, 2) \times C(6, 2) \times C(4, 2) \times C(2, 2) \div A(6,6) = 10395$ 种方案数</p>
+<p>095<br>C:水题<br>D:<br><strong>题意</strong><br>给定 $2 \le N \le 2<em>10^5$ 个互不相同的数 $0 \le a_i \le 10^9$ ，求使组合数$C(n, r)$最大的 $a_i, a_j (i \ne j)$<br><strong>分析</strong><br>对于同一个 $r$ 而言，$n$ 具有单调性，对于同一个 $n$ 而言，越靠近中间的 $r$ 能使得组合数 $C(n, r)$ 更大<br>E:<br><strong>题意</strong><br>有高为 $1 \le H \le 12$，宽为 $1 \le W \le 12$ 的字符矩阵，问是否能构通过分别交换某些行，某些列，使得矩阵中心对称<br><em>*分析</em></em><br>判断交换后的结果矩阵需要枚举两列然后check，复杂度 $O(H^2\times W)$<br>观察可以发现，不需要枚举所有的情况，可以同时枚举$(1, H), (2, H-1), (3, H-2), \cdots$ , 分别是对应当前的哪一行，方案数是$C(12, 2) \times C(10, 2) \times C(8, 2) \times C(6, 2) \times C(4, 2) \times C(2, 2) = 7,484,400 $ 会被极端数据卡掉。<br>再观察发现，任意配对的两个pair行之间是独立的，也就是上述枚举中不存在顺序关系，所以只要枚举 $C(12, 2) \times C(10, 2) \times C(8, 2) \times C(6, 2) \times C(4, 2) \times C(2, 2) \div A(6,6) = 10395$ 种方案数<br>看了有些人的代码，随机= =</p>
 
           
         
@@ -2055,185 +2281,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/04/三个月的计划/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Siil">
-      <meta itemprop="description" content="博主是一个SB">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Siil's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/04/三个月的计划/" class="post-title-link" itemprop="url">三个月的计划</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-04 23:07:35 / 修改时间：23:52:08" itemprop="dateCreated datePublished" datetime="2019-07-04T23:07:35+08:00">2019-07-04</time>
-            </span>
-          
-
-          
-            
-
-            
-          
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="给自己定了一个三个月的计划"><a href="#给自己定了一个三个月的计划" class="headerlink" title="给自己定了一个三个月的计划"></a>给自己定了一个三个月的计划</h2><h3 id="提升英语能力"><a href="#提升英语能力" class="headerlink" title="提升英语能力"></a>提升英语能力</h3><p>提升英语这个说法其实是个很虚无缥缈的东西。如何提升？提升一点点也叫提升，你的目标是什么？</p>
-<p>首先是目标（长期目标）：</p>
-<ul>
-<li>以托福100分+的水平为目标（是指实力，而不一定要去考托福）</li>
-<li>能够熟练的与歪果仁进行日常交流、面试交流</li>
-</ul>
-<p>接下来是提升的方法：</p>
-<ul>
-<li>单词学习（一周三次，每次1h）</li>
-<li>看老友记并尝试shadowing（一周两次每次约1h）</li>
-<li>每天阅读economist上的一篇文章，并尝试完全理解文章意思</li>
-</ul>
-<h3 id="锻炼身体"><a href="#锻炼身体" class="headerlink" title="锻炼身体"></a>锻炼身体</h3><p>自己的身体素质在经过了长年累月的躺尸之后已经下降到了一种非常差劲的地步。需要进行康复训练。</p>
-<ul>
-<li>俯卧撑两组（一组10个，一周4次）</li>
-<li>仰卧起坐两组（一组20个，一周4次）</li>
-<li>乒乓球或者游泳（一周1次，每次2h）</li>
-<li>跑步（一周2次，每次0.5h）</li>
-</ul>
-<h3 id="阅读"><a href="#阅读" class="headerlink" title="阅读"></a>阅读</h3><p>今天摸鱼看leader的书《程序员修炼之道——从小工到专家》时看到了leader在13年写的笔记，leader给自己定了目标一个月看两本书（技术、非技术各一本）。其实我很早就有这个打算，但是自己的自律能力实在是太差了，今天才开始执行。</p>
-<ul>
-<li>技术书（一本 x 3 = 3本）</li>
-<li>非技术书（一本 x 3 = 3本）</li>
-<li>一个月写上两篇的读书笔记</li>
-</ul>
-<h3 id="喜欢的事，算法竞赛题"><a href="#喜欢的事，算法竞赛题" class="headerlink" title="喜欢的事，算法竞赛题"></a>喜欢的事，算法竞赛题</h3><p>之前荒废了太久了，该重新拿起来了</p>
-<ul>
-<li>每周3题CF的2000难度的题</li>
-</ul>
-<h3 id="控制时间"><a href="#控制时间" class="headerlink" title="控制时间"></a>控制时间</h3><ul>
-<li>少看微博</li>
-<li>少看知乎</li>
-</ul>
-<p>后记：阅读、锻炼身体和算法竞赛题的目标对于现在我来说完成起来还是有难度的。三个月后来进行一次该计划的总结，不知道自己能完成多少呢？</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2280,7 +2327,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
